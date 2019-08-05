@@ -1,0 +1,62 @@
+def public_pods
+    source 'https://github.com/CocoaPods/Specs.git' # 公有源
+    
+end
+
+def njspec_pods
+    # 发布
+    #release_remote_pods
+    
+    # 开发
+    develop_local_pods
+end
+
+def develop_local_pods
+    source 'https://github.com/NJHu/NJSpecs.git' # NJ 私有源
+    
+    # 基础组件
+    pod 'NJKit', :path => '../../NJKit/'
+    # 中间件
+    pod 'NJMediator', :path => '../../NJMediator/'
+    # IJK
+    pod 'NJIJKPlayer', :path => '../../NJIJKPlayer/'
+    pod 'NJDYPlayer', :path => '../../NJDYPlayer/'
+    
+end
+
+def release_remote_pods
+    
+    source 'https://github.com/NJHu/NJSpecs.git' # NJ 私有源
+    # 基础组件
+    pod 'NJKit'
+    # 中间件
+    pod 'NJMediator', :source => 'https://github.com/NJHu/NJSpecs.git'
+    # IJK
+    pod 'NJIJKPlayer', :path => '../../NJIJKPlayer/'
+    pod 'NJDYPlayer'
+    
+    
+end
+
+platform :ios, '10.3'
+
+use_frameworks!
+
+target 'NJDouYu' do
+    
+    inhibit_all_warnings!
+    
+    public_pods
+    
+    njspec_pods
+    
+end
+
+
+# 参考
+#pod 'xxx', :git => 'git@xx.com:xx-ios/xx.git', :commit => '1dsafas8769823t1876378'
+#pod 'xx', '2.8.8' , :configuration => 'Debug'
+#pod 'xx', '2.8.8', :configuration => 'Release'
+#pod 'xx','0.1.2'
+#pod 'DYTrends', :git => 'https://github.com/njhu/DYTrends.git', :branch => 'master'
+#pod 'NJKit', :git => 'https://github.com/njhu/NJKit.git'
